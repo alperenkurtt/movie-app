@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Popular Movie Images</h1>
+    <a href='/library'> library</a>
+    <a href='/profile'> profile</a>
+
+    <div>
+        {% for url in result %}
+            <img src="{{ url }}" alt="Movie Image" style="width: 275px; height: auto; margin: 10px;">
+        {% endfor %}
+    </div>
+    
+    
+</body>
+</html>
