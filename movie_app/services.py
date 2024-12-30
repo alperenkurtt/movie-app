@@ -28,14 +28,16 @@ def get_movie_images():
     movie_images = []
 
     for movie_id in popular_movie_ids:
+        movie_data = make_request(f"movie/{movie_id}")
         movie_image_data = make_request(f"movie/{movie_id}/images")
 
         if "backdrops" in movie_image_data and movie_image_data["backdrops"]:
             file_path = movie_image_data['backdrops'][0]['file_path']
             url = base_url + file_path
-            movie_images.append(url)
-        else:
-            movie_images.append(None)
+            movie_images.append({
+                "image_url": url,
+                "title": movie_data["title"]
+            })
 
     return movie_images
 
@@ -48,75 +50,6 @@ def search(query):
         return response["results"][0]
     else:
         return "No results found."
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
