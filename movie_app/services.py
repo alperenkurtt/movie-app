@@ -41,6 +41,26 @@ def get_movie_images():
 
     return movie_images
 
+def get_movie_images2():
+    base_url = "https://image.tmdb.org/t/p/w500"
+    popular_movie_ids = get_ids_of_top_rated_movie()
+
+    movie_images = []
+
+    for movie_id in popular_movie_ids:
+        movie_data = make_request(f"movie/{movie_id}")
+        movie_image_data = make_request(f"movie/{movie_id}/images")
+
+        if "backdrops" in movie_image_data and movie_image_data["backdrops"]:
+            file_path = movie_image_data['backdrops'][0]['file_path']
+            url = base_url + file_path
+            movie_images.append({
+                "image_url": url,
+                "title": movie_data["title"]
+            })
+
+    return movie_images
+
 def search(query):
     file_path = f"search/movie?query={query}&include_adult=false&language=en-US&page=1"
 

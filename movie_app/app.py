@@ -1,16 +1,28 @@
 from flask import Flask, jsonify, render_template, request
-from services import get_movie_images, get_popular_movies_data, search
+from services import get_movie_images, get_movie_images2, search
+# from config import USER_FILE, MOVIES_FILE
+# import pandas as pd
+# from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = "12345"
 
 @app.route('/')
 def index():
-    return "Welcome to my Movie App <a href='/home'> Login</a>"
+    return """
+        Welcome to my Movie App 
+        <a href='/home'>Home</a>  
+    """
 
 @app.route('/home')
 def home_route():
     result = get_movie_images()
     return render_template('home.html', result=result)
+
+@app.route('/home2')
+def home_route2():
+    result = get_movie_images2()
+    return render_template('home2.html', result=result)
 
 @app.route('/library')
 def library_route():
@@ -37,6 +49,93 @@ def search_movie():
 @app.route('/profile')
 def profile_route():
     return render_template('profile.html')
+
+# # Kullanıcı kayıt sayfası
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         email = request.form['email']
+
+#         # Kullanıcıyı Excel dosyasına kaydet
+#         try:
+#             users = pd.read_excel(USER_FILE, engine='openpyxl')
+#         except FileNotFoundError:
+#             users = pd.DataFrame(columns=['username', 'password', 'email'])
+
+#         if username in users['username'].values:
+#             return "Bu kullanıcı adı zaten var!"
+
+#         new_user = pd.DataFrame({'username': [username], 'password': [password], 'email': [email]})
+#         users = pd.concat([users, new_user], ignore_index=True)
+#         users.to_excel(USER_FILE, index=False, engine='openpyxl')  # Veriyi kaydet
+#         return redirect('/login')
+
+#     return render_template('register.html')
+
+# # Kullanıcı giriş sayfası
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+
+#         try:
+#             users = pd.read_excel(USER_FILE, engine='openpyxl')
+#         except FileNotFoundError:
+#             return "Kullanıcı veritabanı bulunamadı!"
+
+#         if username in users['username'].values:
+#             user = users[users['username'] == username]
+#             if user['password'].values[0] == password:
+#                 session['username'] = username
+#                 return redirect('/dashboard')
+#             else:
+#                 return "Şifre yanlış!"
+#         else:
+#             return "Kullanıcı bulunamadı!"
+
+#     return render_template('login.html')
+
+
+# # Kullanıcı paneli
+# @app.route('/dashboard', methods=['GET', 'POST'])
+# def dashboard():
+#     if 'username' not in session:
+#         return redirect('/login')
+
+#     if request.method == 'POST':
+#         movie = request.form['movie']
+
+#         # Filmleri Excel'e kaydet
+#         try:
+#             movies = pd.read_excel(MOVIES_FILE, engine='openpyxl')
+#         except FileNotFoundError:
+#             movies = pd.DataFrame(columns=['username', 'movie', 'date'])
+
+#         new_movie = pd.DataFrame({'username': [session['username']],
+#                                   'movie': [movie],
+#                                   'date': [datetime.now().strftime('%Y-%m-%d %H:%M:%S')]})
+#         movies = pd.concat([movies, new_movie], ignore_index=True)
+#         movies.to_excel(MOVIES_FILE, index=False, engine='openpyxl')  # Veriyi kaydet
+
+#     # Kullanıcıya ait filmleri göster
+#     try:
+#         movies = pd.read_excel(MOVIES_FILE, engine='openpyxl')
+#         user_movies = movies[movies['username'] == session['username']]
+#     except FileNotFoundError:
+#         user_movies = pd.DataFrame(columns=['movie', 'date'])
+
+#     return render_template('dashboard.html', movies=user_movies)
+
+
+# # Çıkış yap
+# @app.route('/logout')
+# def logout():
+#     session.pop('username', None)
+#     return redirect('/login')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

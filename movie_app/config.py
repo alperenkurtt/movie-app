@@ -6,3 +6,7 @@ API_BASE_URL = 'https://api.themoviedb.org/3/'
 CLIENT_ID = None
 CLIENT_SECRET = None
 REDIRECT_URI = 'http://localhost:5000/callback' 
+
+USER_FILE = "db/users.xlsx"
+MOVIES_FILE = "db/movies.xlsx"
+
