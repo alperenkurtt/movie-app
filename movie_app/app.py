@@ -109,7 +109,6 @@ def dashboard():
      if request.method == 'POST':
          movie = request.form['movie']
 
-         # Filmleri Excel'e kaydet
          try:
              movies = pd.read_excel(MOVIES_FILE, engine='openpyxl')
          except FileNotFoundError:
