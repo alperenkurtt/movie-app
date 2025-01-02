@@ -6,14 +6,22 @@
     <title>Library</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
+            font-family: Roboto, sans-serif;
+            background-color: #22254b;
+            color: white;
+            text-align: center;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px;
         }
         .movie-list {
             display: flex;
@@ -64,15 +72,42 @@
             width: 100%;
             padding: 10px;
         }
+        button {
+            padding: 10px 20px;
+            background-color: #373b69;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .title {
+            margin: 0;
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Library</h1>
-        <button id="add-movie">+</button>
-    </div>
+  <div class="header">
+        <h1 class="title">Library</h1>
+        <div class="button-group">
+            <button id="add-movie">Add Movie</button>
+            <button type="button" class="button-secondary" onclick="window.location.href='/home'">Ana Sayfa</button>
+        </div>
+  </div>
     <div class="movie-list" id="movie-list">
-        <!-- Filmler buraya dinamik olarak eklenecek -->
+
     </div>
 
     <!-- Modal -->
@@ -92,6 +127,8 @@
         const closeModalBtn = document.getElementById('close-modal');
         const searchMovieBtn = document.getElementById('search-movie');
         const movieList = document.getElementById('movie-list');
+
+
 
         // Modal Açma/Kapama
         addMovieBtn.addEventListener('click', () => modal.style.display = 'flex');

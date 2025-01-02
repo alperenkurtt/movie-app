@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="users/css/style.css">
     <title>Popular Movie Images</title>
     <style>
         .movie-container {
@@ -42,7 +43,9 @@
     <h1>Popular Movie Images</h1>
     <a href='/library'>Library</a>
     <a href='/profile'>Profile</a>
-    <a href='/home2'>top rated</a>
+    <a href='/home2'>Top-Rated</a>
+    <a href='/dashboard'>Dashboard</a>
+    <a href='/logout'>log out</a>
 
     <div>
         {% for movie in result %}
@@ -52,5 +55,6 @@
             </div>
         {% endfor %}
     </div>
+<script src="script.js"></script>
 </body>
 </html>
