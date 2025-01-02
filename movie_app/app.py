@@ -13,6 +13,8 @@ def index():
     return """
         Welcome to my Movie App 
         <a href='/home'>Home</a>  
+        <a href='/login'>Login</a>
+        <a href='/register'>Register</a>
     """
 
 @app.route('/home')
@@ -65,7 +67,7 @@ def register():
          except FileNotFoundError:
              users = pd.DataFrame(columns=['username', 'password', 'email'])
 
-         if username in users['username'].values:
+         if username in users['username']:
              return "Bu kullanıcı adı zaten var!"
 
          new_user = pd.DataFrame({'username': [username], 'password': [password], 'email': [email]})
