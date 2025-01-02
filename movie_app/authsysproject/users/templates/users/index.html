@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA- Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVILIB</title>
+    {% load static %}
+    <link rel="stylesheet" href= "{% static 'users/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}" style="color:black">Return Home</a>
+        <form id="form" >
+        <input type="text" id="search" class="search" placeholder="Search" >
+    </form>
+    </header>
+
+    <main id="main">
+
+   
+  </main>
+
+    <script src="{% static 'users/css/script.js' %}"></script>
+</body>
+</html>

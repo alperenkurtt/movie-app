@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'users/home.html')
+    return render(request,'users/home.html')
 
 
 def register(request):
@@ -33,3 +33,8 @@ def profile(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+@login_required
+def index(request):
+    return render(request,'users/index.html')

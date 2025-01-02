@@ -5,12 +5,17 @@
     <div class="container">
             <div class="row g-0">
                 <div class="col-sm-6 col-md-8" id="header-text">
-                  <h1 id="header-h1">Create your own <br> liked film lists. </h1>
-                  <p id="header-paragraph">A trusted destination for traders worldwide, <br> Authorised by FCA, ASIC & FSCA</p>
-                  <a class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="body-link-row">Discover More</a>
+                  <h1 id="header-h1" style="color: black;">Create your own <br> liked films list. </h1>
+                  <p id="header-paragraph" style="color: black;">Authors:<br> Alperen Kurt, Efe Metilli, Pınar Öztekin.</p>
+                  <a href="{% url 'index' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="body-link-row">Create a list.</a>
                 </div>
-
+                <ul>
+                 {% for image_url in my_list %}
+                         <img src="{{ image_url }}"  alt="">
+                 {% endfor %}
+                </ul>
                 <div class="col-6 col-md-4" id="header-image"><img src="images/in-liquid-slide-2.svg " alt=""></div>
               </div>
+
     </div>
 {% endblock content %}
