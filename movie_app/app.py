@@ -8,14 +8,15 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "12345"
 
+
 @app.route('/')
 def index():
     return """
         Welcome to my Movie App 
-        <a href='/home'>Home</a>  
         <a href='/login'>Login</a>
         <a href='/register'>Register</a>
     """
+
 
 @app.route('/home')
 def home_route():
@@ -48,6 +49,7 @@ def search_movie():
         })
     else:
         return jsonify({"error": "Movie not found"}), 404
+
 
 @app.route('/profile')
 def profile_route():
@@ -93,14 +95,13 @@ def login():
              user = users[users['username'] == username]
              if user['password'].values[0] == password:
                  session['username'] = username
-                 return redirect('/dashboard')
+                 return redirect('/home')
              else:
                  return "Şifre yanlış!"
          else:
              return "Kullanıcı bulunamadı!"
 
      return render_template('login.html')
-
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
@@ -130,7 +131,6 @@ def dashboard():
          user_movies = pd.DataFrame(columns=['movie', 'date'])
 
      return render_template('dashboard.html', movies=user_movies)
-
 
 
 @app.route('/logout')
