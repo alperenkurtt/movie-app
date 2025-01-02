@@ -12,11 +12,43 @@ app.secret_key = "12345"
 @app.route('/')
 def index():
     return """
-        Welcome to my Movie App 
-        <a href='/login'>Login</a>
-        <a href='/register'>Register</a>
-    """
-
+ <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Roboto, sans-serif;
+            background-color: #22254b;
+            color: white; 
+            text-align: center; 
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #373b69;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0; 
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            margin-bottom: 20px; 
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Movie App</h1>
+    <button type="button" class="button-secondary" onclick="window.location.href='/register'">Hesap Oluştur</button>
+    <button type="button" class="button-secondary" onclick="window.location.href='/login'">Giriş Yap</button>
+</body>
+"""
 
 @app.route('/home')
 def home_route():
