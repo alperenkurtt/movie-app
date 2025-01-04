@@ -3,58 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="users/css/style.css">
     <title>Popular Movie Images</title>
-    <style>
-        .movie-container {
-            display: inline-block;
-            position: relative;
-            margin: 10px;
-        }
-        .movie-container img {
-            width: 275px;
-            height: auto;
-            border-radius: 5px;
-            transition: transform 0.3s;
-        }
-        .movie-container img:hover {
-            transform: scale(1.05);
-        }
-        .movie-title {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px;
-            text-align: center;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 5px;
-        }
-        .movie-container:hover .movie-title {
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body> 
-    <h1>Popular Movie Images</h1>
-    <a href='/library'>Library</a>
-    <a href='/profile'>Profile</a>
-    <a href='/home2'>Top-Rated</a>
-    <a href='/dashboard'>Dashboard</a>
-    <a href='/logout'>log out</a>
+    <h1>{{ category.title() }} Movie Images</h1>
+
+    <form action="/library" method="GET">
+        <button type="submit">Library</button>
+    </form>
+    
+    <form action="/profile" method="GET">
+        <button type="submit">profile</button>
+    </form>
+
+    <form action="/recommendations" method="GET">
+        <button type="submit">Recommendations</button>
+    </form>
+
+    <form action="/home" method="POST">
+        <button type="submit" name="button_value" value="popular">Popular</button>
+        <button type="submit" name="button_value" value="top_rated">Top Rated</button>
+        <button type="submit" name="button_value" value="upcoming">Upcoming</button>
+    </form>
 
     <div>
         {% for movie in result %}
             <div class="movie-container">
                 <img src="{{ movie['image_url'] }}" alt="Movie Image">
                 <div class="movie-title">{{ movie['title'] }}</div>
+                <div class="movie-vote">{{ movie['vote_average'] }}</div>
             </div>
         {% endfor %}
     </div>
-<script src="script.js"></script>
+
 </body>
 </html>

@@ -9,4 +9,3 @@ REDIRECT_URI = 'http://localhost:5000/callback'
 
 USER_FILE = "db/users.xlsx"
 MOVIES_FILE = "db/movies.xlsx"
-
