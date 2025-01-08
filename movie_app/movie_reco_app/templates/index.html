@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVILIB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <form id="form">
+            <input type="text" id="search" class="search" placeholder="Search">
+            <button type="button" id="favorites-btn" class="favorites-btn">Favorites</button>
+            <button type="button" id="home-btn" class="favorites-btn">Home</button>
+            <button type="button" id="recommendations-btn" class="favorites-btn">Recommendations</button>
+        </form>
+    </header>
+
+    <main id="main"></main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
